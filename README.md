@@ -10,4 +10,4 @@ You will learn Strategy Pattern by doing a simple excercise. Please follow the s
 make strategy
 ```
 
-2. Here is new requirement, We want to add a new duck `RubberDuck` which cannot fly and cannot quack. Let's see how you implement it. (When the `RubbleDuck` fly, it should print `I cannot fly` and when it quack, it should print `I cannot quack`)
+2. Here is new requirement, business told us that `RubberDuck` cannot fly and cannot quack. Let's see how you fix it. (When the `RubbleDuck` fly, it should print `I cannot fly` and when it quack, it should print `I cannot quack`)
