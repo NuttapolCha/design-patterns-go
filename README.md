@@ -60,10 +60,10 @@ In the beginning of the game, you are going to make 4 kinds of ducks perform the
 
 ```go
 func main() {
-    duck := Duck{}
-    mullardDuck := MallardDuck{}
-    redheadDuck := RedheadDuck{}
-    rubberDuck := RubberDuck{}
+    duck := &Duck{}
+    mullardDuck := &MallardDuck{}
+    redheadDuck := &RedheadDuck{}
+    rubberDuck := &RubberDuck{}
     ducks := []Ducker{duck, mullardDuck, redheadDuck, rubberDuck}
 
     fmt.Printf("\n===== Beginning of the Game =====\n\n")
@@ -102,17 +102,17 @@ How do you going to implement this? Asuume that the method only print the "I am 
 
 2. The business see that `RubberDuck` should not flyable, can you make the `RubberDuck` print *"I cannot fly" instead of "I am flying"*?
 
-3. The business ask you to add new duck type, a `DecoyDuck` which is *cannot fly and cannot quack*. Let's see how easily you can make changes.
+3. The business ask you to add new duck type, a `DecoyDuck` which is *cannot fly and cannot quack*. Let's see how you can add a new duck type.
 
 4. Now, we are in the middle game! The ReadheadDuck is now tried and no longer flyable. Business wants the `ReadheadDuck` is flyable at the beginning of the game but cannot fly at the middle game. How you gonna implement this? Please notice that whether you are violating the *Open/Close Principle* or not?
 
     ```go
     func main() {
-        duck := Duck{}
-        mullardDuck := MallardDuck{}
-        redheadDuck := RedheadDuck{}
-        rubberDuck := RubberDuck{}
-        decoyDuck := DecoyDuck{}
+        duck := &Duck{}
+        mullardDuck := &MallardDuck{}
+        redheadDuck := &RedheadDuck{}
+        rubberDuck := &RubberDuck{}
+        decoyDuck := &DecoyDuck{}
         ducks := []Ducker{duck, mullardDuck, redheadDuck, rubberDuck, decoyDuck}
 
         fmt.Printf("\n===== Beginning of the Game =====\n\n")
@@ -120,7 +120,7 @@ How do you going to implement this? Asuume that the method only print the "I am 
             d.Display()
             d.Swim()
             d.Quack()
-            d.Fly()
+            d.Fly() // ReadheadDuck can fly here
             fmt.Println()
         }
 
@@ -131,7 +131,7 @@ How do you going to implement this? Asuume that the method only print the "I am 
             d.Display()
             d.Swim()
             d.Quack()
-            d.Fly()
+            d.Fly() // ReadheadDuck cannot fly here
             fmt.Println()
         }
     }
@@ -142,12 +142,12 @@ By implementing this, you will see that the MagicDuck cannot quack at the beginn
 
     ```go
     func main() {
-        duck := Duck{}
-        mullardDuck := MallardDuck{}
-        redheadDuck := RedheadDuck{}
-        rubberDuck := RubberDuck{}
-        decoyDuck := DecoyDuck{}
-        magicDuck := MagicDuck{}
+        duck := &Duck{}
+        mullardDuck := &MallardDuck{}
+        redheadDuck := &RedheadDuck{}
+        rubberDuck := &RubberDuck{}
+        decoyDuck := &DecoyDuck{}
+        magicDuck := &MagicDuck{}
         ducks := []Ducker{duck, mullardDuck, redheadDuck, rubberDuck, decoyDuck, magicDuck}
 
         fmt.Printf("\n===== Beginning of the Game =====\n\n")
@@ -155,7 +155,7 @@ By implementing this, you will see that the MagicDuck cannot quack at the beginn
             d.Display()
             d.Swim()
             d.Quack() // magic duck cannot quack here
-            d.Fly()
+            d.Fly()  // ReadheadDuck can fly here
             fmt.Println()
         }
 
@@ -167,11 +167,14 @@ By implementing this, you will see that the MagicDuck cannot quack at the beginn
             d.Display()
             d.Swim()
             d.Quack() // magic duck can quack here because it has been fly at the beginning of the game
-            d.Fly()
+            d.Fly() // ReadheadDuck cannot fly here
             fmt.Println()
         }
     }
     ```
 
-6. That enought. Now thinking about what you've done, think about problems you have faced.
+6. In the ending of the game, `MagicDuck` will fly with rocket power and quacking very loud! Can you implement this?
+Just printing the *"I am flying with rocket power!"* and *"I am quacking very loud"* for `Fly()` and `Quack()` methods respectively.
+
+7. That's enough for today. Now thinking about what you've done, think about problems you have faced.
 Are your code easy to changes (i.e. maintainable and readable) as the complexity is growing?

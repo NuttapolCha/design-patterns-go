@@ -49,10 +49,10 @@ func (d RubberDuck) Display() {
 }
 
 func main() {
-	duck := Duck{}
-	mullardDuck := MallardDuck{}
-	redheadDuck := RedheadDuck{}
-	rubberDuck := RubberDuck{}
+	duck := &Duck{}
+	mullardDuck := &MallardDuck{}
+	redheadDuck := &RedheadDuck{}
+	rubberDuck := &RubberDuck{}
 	ducks := []Ducker{duck, mullardDuck, redheadDuck, rubberDuck}
 
 	fmt.Printf("\n===== Beginning of the Game =====\n\n")
