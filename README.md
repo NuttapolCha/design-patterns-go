@@ -137,8 +137,8 @@ How do you going to implement this? Asuume that the method only print the "I am 
     }
     ```
 
-5. Business is going crazy now. They require you to add `MagicDuck` which initialy cannot fly, but after it quacking, they can.
-By implementing this, you will see that the MagicDuck cannot fly at the beginning of the game but can fly at the middle game wihout additional logic in main function.
+5. Business is going crazy now. They require you to add `MagicDuck` which initialy cannot quack, but after it flying, they can.
+By implementing this, you will see that the MagicDuck cannot quack at the beginning of the game but can quack at the middle game wihout additional logic in main function.
 
     ```go
     func main() {
@@ -154,19 +154,20 @@ By implementing this, you will see that the MagicDuck cannot fly at the beginnin
         for _, d := range ducks {
             d.Display()
             d.Swim()
-            d.Quack()
-            d.Fly() // magic duck cannot fly here
+            d.Quack() // magic duck cannot quack here
+            d.Fly()
             fmt.Println()
         }
 
         // you can add logic here before entering the middle game
+        // no additional logic about magic duck is needed
 
         fmt.Printf("\n===== Middle of the Game =====\n\n")
         for _, d := range ducks {
             d.Display()
             d.Swim()
-            d.Quack()
-            d.Fly() // magic duck can fly here because it has been quack at the beginning of the game
+            d.Quack() // magic duck can quack here because it has been fly at the beginning of the game
+            d.Fly()
             fmt.Println()
         }
     }
