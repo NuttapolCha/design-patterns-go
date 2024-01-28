@@ -155,7 +155,7 @@ By implementing this, you will see that the MagicDuck cannot quack at the beginn
             d.Display()
             d.Swim()
             d.Quack() // magic duck cannot quack here
-            d.Fly()  // ReadheadDuck can fly here
+            d.Fly() // ReadheadDuck can fly here
             fmt.Println()
         }
 
