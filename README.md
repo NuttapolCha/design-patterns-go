@@ -176,5 +176,8 @@ By implementing this, you will see that the MagicDuck cannot quack at the beginn
 6. In the ending of the game, `MagicDuck` will fly with rocket power and quacking very loud! Can you implement this?
 Just printing the *"I am flying with rocket power!"* and *"I am quacking very loud"* for `Fly()` and `Quack()` methods respectively.
 
-7. That's enough for today. Now thinking about what you've done, think about problems you have faced.
+7. The business want to improve our UX according to feedbacks from users. They want us to change the "I am quacking" message to "quack quack!".
+How you gonna change this? Please notice how many code changes you gonna made.
+
+8. That's enough for today. Now thinking about what you've done, think about problems you have faced.
 Are your code easy to changes (i.e. maintainable and readable) as the complexity is growing?
