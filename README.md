@@ -1,13 +1,176 @@
 # Design Patterns in Golang
 
+In each pattern, please read the *Setting the Scene*.
+Once you understand your context, then you can go to the problem statement.
+
 ## Strategy Pattern
 
-You will learn Strategy Pattern by doing a simple excercise. Please follow the steps below.
+### Setting the Scene
 
-1. Given `Duck` base class and `MallardDuck`, `RedheadDuck`, `RubberDuck` sub classes with some of their behaviors as you can see in `./StrategyPattern/duck/duck.go`. Runs
+We are making a simple duck simulator game.
+Given `MullardDuck`, `RedheadDuck`, `RubberDuck`, all of them is `Duck` and have behaviors as the following
+
+```go
+type Ducker interface {
+    Display()
+    Swim()
+    Quack()
+}
+
+type Duck struct{}
+
+func (d Duck) Display() {
+    fmt.Println("I am a duck")
+}
+
+func (d Duck) Swim() {
+    fmt.Println("I am swimming")
+}
+
+func (d Duck) Quack() {
+    fmt.Println("I am quacking")
+}
+
+type MullardDuck struct {
+    Duck
+}
+
+func (d MullardDuck) Display() {
+    fmt.Println("I am a mullard duck")
+}
+
+type RedheadDuck struct {
+    Duck
+}
+
+func (d RedheadDuck) Display() {
+    fmt.Println("I am a redhead duck")
+}
+
+type RubberDuck struct {
+    Duck
+}
+
+func (d RubberDuck) Display() {
+    fmt.Println("I am a rubber duck")
+}
+```
+
+In the beginning of the game, you are going to make 4 kinds of ducks perform their 3 behaviors.
+
+```go
+func main() {
+    duck := Duck{}
+    mullardDuck := MallardDuck{}
+    redheadDuck := RedheadDuck{}
+    rubberDuck := RubberDuck{}
+    ducks := []Ducker{duck, mullardDuck, redheadDuck, rubberDuck}
+
+    fmt.Printf("\n===== Beginning of the Game =====\n\n")
+    for _, d := range ducks {
+        d.Display()
+        d.Swim()
+        d.Quack()
+        fmt.Println()
+    }
+}
+```
+
+You can run the program above by `make`.
 
 ```sh
 make strategy
 ```
 
-2. Here is new requirement, business told us that `RubberDuck` cannot fly and cannot quack. Let's see how you fix it. (When the `RubbleDuck` fly, it should print `I cannot fly` and when it quack, it should print `I cannot quack`)
+### Problem Statements
+
+From now on, the business will requires you to add awesome features to the game.
+
+Please add the following features **step by step**, **NOT SKIPPING OR READ OVER THE STEPS BEFORE YOU HAVE DONE EACH ONE** or you might not get the best result from this exercise.
+
+1. First of all, business want you to add the `Fly()` behavior to all ducks.
+How do you going to implement this? Asuume that the method only print the "I am flying".
+
+    ```go
+    type Ducker interface {
+        Display()
+        Swim()
+        Quack()
+        Fly() // introducing fly behavior
+    }
+    ```
+
+2. The business see that `RubberDuck` should not flyable, can you make the `RubberDuck` print *"I cannot fly" instead of "I am flying"*?
+
+3. The business ask you to add new duck type, a `DecoyDuck` which is *cannot fly and cannot quack*. Let's see how easily you can make changes.
+
+4. Now, we are in the middle game! The ReadheadDuck is now tried and no longer flyable. Business wants the `ReadheadDuck` is flyable at the beginning of the game but cannot fly at the middle game. How you gonna implement this? Please notice that whether you are violating the *Open/Close Principle* or not?
+
+    ```go
+    func main() {
+        duck := Duck{}
+        mullardDuck := MallardDuck{}
+        redheadDuck := RedheadDuck{}
+        rubberDuck := RubberDuck{}
+        decoyDuck := DecoyDuck{}
+        ducks := []Ducker{duck, mullardDuck, redheadDuck, rubberDuck, decoyDuck}
+
+        fmt.Printf("\n===== Beginning of the Game =====\n\n")
+        for _, d := range ducks {
+            d.Display()
+            d.Swim()
+            d.Quack()
+            d.Fly()
+            fmt.Println()
+        }
+
+        // you can add logic here before entering the middle game
+
+        fmt.Printf("\n===== Middle of the Game =====\n\n")
+        for _, d := range ducks {
+            d.Display()
+            d.Swim()
+            d.Quack()
+            d.Fly()
+            fmt.Println()
+        }
+    }
+    ```
+
+5. Business is going crazy now. They require you to add `MagicDuck` which initialy cannot fly, but after it quacking, they can.
+By implementing this, you will see that the MagicDuck cannot fly at the beginning of the game but can fly at the middle game wihout additional logic in main function.
+
+    ```go
+    func main() {
+        duck := Duck{}
+        mullardDuck := MallardDuck{}
+        redheadDuck := RedheadDuck{}
+        rubberDuck := RubberDuck{}
+        decoyDuck := DecoyDuck{}
+        magicDuck := MagicDuck{}
+        ducks := []Ducker{duck, mullardDuck, redheadDuck, rubberDuck, decoyDuck, magicDuck}
+
+        fmt.Printf("\n===== Beginning of the Game =====\n\n")
+        for _, d := range ducks {
+            d.Display()
+            d.Swim()
+            d.Quack()
+            d.Fly() // magic duck cannot fly here
+            fmt.Println()
+        }
+
+        // you can add logic here before entering the middle game
+
+        fmt.Printf("\n===== Middle of the Game =====\n\n")
+        for _, d := range ducks {
+            d.Display()
+            d.Swim()
+            d.Quack()
+            d.Fly() // magic duck can fly here because it has been quack at the beginning of the game
+            fmt.Println()
+        }
+    }
+    ```
+
+6. That enought. Now thinking about what you've done, think about problems you have faced.
+Are your code easy to changes (i.e. maintainable and readable) as the complexity is growing?
