@@ -36,7 +36,7 @@ type MallardDuck struct {
 }
 
 func (d MallardDuck) Display() {
-    fmt.Println("I am a mullard duck")
+    fmt.Println("I am a mallard duck")
 }
 
 type RedheadDuck struct {
