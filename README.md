@@ -137,8 +137,8 @@ How do you going to implement this? Asuume that the method only print the "I am 
     }
     ```
 
-5. Business is going crazy now. They require you to add `MagicDuck` which initialy cannot quack, but after it flying, it can.
-By implementing this, you will see that the MagicDuck cannot quack at the beginning of the game but can quack at the middle game wihout additional logic in main function.
+5. Business is going crazy now. They require you to add `MagicDuck` which initially cannot quack, but after it flying, it can.
+By implementing this, you will see that the MagicDuck cannot quack at the beginning of the game but can quack at the middle game without additional logic in main function.
 
     ```go
     func main() {
