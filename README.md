@@ -104,7 +104,7 @@ How do you going to implement this? Asuume that the method only print the "I am 
 
 3. The business ask you to add new duck type, a `DecoyDuck` which is *cannot fly and cannot quack*. Let's see how you can add a new duck type.
 
-4. Now, we are in the middle game! The ReadheadDuck is now tried and no longer flyable. Business wants the `ReadheadDuck` is flyable at the beginning of the game but cannot fly at the middle game. How you gonna implement this? Please notice that whether you are violating the *Open/Close Principle* or not?
+4. Now, we are in the middle game! The ReadheadDuck is now Tired and no longer flyable. Business wants the `ReadheadDuck` is flyable at the beginning of the game but cannot fly at the middle game. How you gonna implement this? Please notice that whether you are violating the *Open/Close Principle* or not?
 
     ```go
     func main() {
@@ -174,7 +174,7 @@ By implementing this, you will see that the MagicDuck cannot quack at the beginn
 
 6. In the ending of the game, `MagicDuck` will fly with rocket power and quacking very loud! Can you implement this?
 Just printing the *"I am flying with rocket power!"* and *"I am quacking very loud"* for `Fly()` and `Quack()` methods respectively.
-Moreover, `ReadheadDuck` is no longer tried and able to fly again. Please implement this feature as well.
+Moreover, `ReadheadDuck` is no longer tired and able to fly again. Please implement this feature as well.
 
     ```go
     func main() {
